@@ -19,7 +19,7 @@ public class Partido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
-	private int id;
+	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(referencedColumnName = "id")
@@ -40,4 +40,15 @@ public class Partido {
 	
 	@Column(name = "goles_visitante")
 	private int golesVisitante;
+
+
+	public void setGolesLocal(int golesLocal) {
+		this.golesLocal = golesLocal;
+	}
+
+	public void setGolesVisitante(int golesVisitante) {
+		this.golesVisitante = golesVisitante;
+	}
+	
+	
 }

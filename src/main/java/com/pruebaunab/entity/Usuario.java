@@ -15,7 +15,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
-	private int id;
+	private Integer id;
 	
 	@Column(length = 100, nullable = false)
 	private String nombre;

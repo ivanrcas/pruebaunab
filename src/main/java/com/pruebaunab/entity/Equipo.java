@@ -15,7 +15,7 @@ public class Equipo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(columnDefinition = "serial")
-	private int id;
+	private Integer id;
 	
 	@Column(length = 20)
 	private String nombre;
