@@ -4,21 +4,23 @@ import java.io.Serializable;
 
 public class MarcadorRequest implements Serializable{
 
-	private int golesLocal;
-	private int golesVisitante;
+	private static final long serialVersionUID = 1L;
+	private Integer golesLocal;
+	private Integer golesVisitante;
 	
-	public MarcadorRequest(int golesLocal, int golesVisitante) {
-		this.golesLocal = golesLocal;
-		this.golesVisitante = golesVisitante;
-	}
-
-	public int getGolesLocal() {
+	public Integer getGolesLocal() {
 		return golesLocal;
 	}
-
-	public int getGolesVisitante() {
+	public void setGolesLocal(Integer golesLocal) {
+		this.golesLocal = golesLocal;
+	}
+	public Integer getGolesVisitante() {
 		return golesVisitante;
 	}
+	public void setGolesVisitante(Integer golesVisitante) {
+		this.golesVisitante = golesVisitante;
+	}
+	
 	
 	
 }

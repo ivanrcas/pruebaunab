@@ -18,37 +18,88 @@ public class Partido {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial")
+//	@Column(columnDefinition = "serial")
 	private Integer id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "usuario", referencedColumnName = "id")
     private Usuario usuario;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "local", referencedColumnName = "id")
     private Equipo local;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "visitante", referencedColumnName = "id")
     private Equipo visitante;
 	
 	private LocalDate fecha;
 	
 	@Column(name = "goles_local")
-	private int golesLocal;
+	private Integer golesLocal;
 	
 	@Column(name = "goles_visitante")
-	private int golesVisitante;
+	private Integer golesVisitante;
 
 
-	public void setGolesLocal(int golesLocal) {
+
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Equipo getLocal() {
+		return local;
+	}
+
+	public void setLocal(Equipo local) {
+		this.local = local;
+	}
+
+	public Equipo getVisitante() {
+		return visitante;
+	}
+
+	public void setVisitante(Equipo visitante) {
+		this.visitante = visitante;
+	}
+
+	public LocalDate getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(LocalDate fecha) {
+		this.fecha = fecha;
+	}
+
+	public Integer getGolesLocal() {
+		return golesLocal;
+	}
+
+	public void setGolesLocal(Integer golesLocal) {
 		this.golesLocal = golesLocal;
 	}
 
-	public void setGolesVisitante(int golesVisitante) {
+	public Integer getGolesVisitante() {
+		return golesVisitante;
+	}
+
+	public void setGolesVisitante(Integer golesVisitante) {
 		this.golesVisitante = golesVisitante;
 	}
+
 	
 	
 }

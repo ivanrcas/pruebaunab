@@ -8,23 +8,22 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pruebaunab.dto.UsuarioDto;
-import com.pruebaunab.service.UsuarioService;
+import com.pruebaunab.dto.EquipoDto;
+import com.pruebaunab.service.EquipoService;
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioRest {
-	
+@RequestMapping("/equipo")
+public class EquipoRest {
+
 	@Autowired
-	private UsuarioService usuarioService;
+	private EquipoService equipoService;
 	
 	@PostMapping("/registrar")
-	public ResponseEntity<String> registrarUsuario(@RequestBody UsuarioDto nuevoUsuario){
-		if(usuarioService.registrar(nuevoUsuario)) {
-			return new ResponseEntity<>("Usuario creado exitosamente", HttpStatus.CREATED);
+	public ResponseEntity<String> registrar(@RequestBody EquipoDto nuevoEquipo){
+		if(equipoService.registrar(nuevoEquipo)==true) {
+			return new ResponseEntity<>("El equipo se ha creado exitosamente", HttpStatus.CREATED);
 		}else {
-			return new ResponseEntity<>("No se pudo crear el usuario", HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>("No se pudo crear el usuarioNo se pudo crear el equipo", HttpStatus.NO_CONTENT);
 		}
 	}
-
 }

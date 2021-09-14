@@ -1,25 +1,47 @@
 package com.pruebaunab.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.pruebaunab.dto.MarcadorRequest;
+import com.pruebaunab.dto.PartidoDto;
 import com.pruebaunab.entity.Partido;
+import com.pruebaunab.repository.EquipoRepository;
 import com.pruebaunab.repository.PartidoRepository;
+import com.pruebaunab.repository.UsuarioRepository;
 
 @Service
 public class PartidoService {
 
 	private PartidoRepository partidoRepository;
+	private EquipoRepository equipoRepository;
+	private UsuarioRepository usuarioRepository;
 
-	public PartidoService(PartidoRepository partidoRepository) {
+	// Inyección de dependencias
+	public PartidoService(PartidoRepository partidoRepository, EquipoRepository equipoRepository,
+			UsuarioRepository usuarioRepository) {
 		this.partidoRepository = partidoRepository;
+		this.equipoRepository = equipoRepository;
+		this.usuarioRepository = usuarioRepository;
 	}
 
-	public void registrar(Partido partido) {
-		partidoRepository.save(partido);
+	public boolean registrar(PartidoDto partidoDto) {
+
+		if (partidoDto.getVisitante() != null & partidoDto.getLocal() != null & partidoDto.getUsuario() != null) {
+			Partido partidoEntity = new Partido();
+			partidoEntity.setVisitante(equipoRepository.getById(partidoDto.getVisitante()));
+			partidoEntity.setLocal(equipoRepository.getById(partidoDto.getLocal()));
+			partidoEntity.setUsuario(usuarioRepository.getById(partidoDto.getUsuario()));
+			partidoEntity.setFecha(partidoDto.getFecha());
+			partidoEntity.setGolesVisitante(partidoDto.getGolesVisitante());
+			partidoEntity.setGolesLocal(partidoDto.getLocal());
+			partidoRepository.save(partidoEntity);
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	public List<Partido> listar() {

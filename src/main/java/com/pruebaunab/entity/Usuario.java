@@ -5,8 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 
 @Entity
 @Table(name = "usuarios")
@@ -14,21 +15,62 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(columnDefinition = "serial")
 	private Integer id;
 	
-	@Column(length = 100, nullable = false)
+	@NotNull
+	@Column(length = 100)
 	private String nombre;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 50)
 	private String correo;
 	
-	@Column(length = 10, nullable = false)
+	@Column(length = 10)
 	private String username;
 	
-	@Column(length = 10, nullable = false)
+	@Column(length = 10)
 	private String password;
+
+	//Getters and Setters
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+	public void setCorreo(String correo) {
+		this.correo = correo;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}	
 	
-	@OneToOne(mappedBy = "usuario")
-	private Partido partido;
+	
+	
 }

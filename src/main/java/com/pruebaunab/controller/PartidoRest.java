@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pruebaunab.dto.MarcadorRequest;
+import com.pruebaunab.dto.PartidoDto;
 import com.pruebaunab.entity.Partido;
 import com.pruebaunab.service.PartidoService;
 
@@ -25,9 +26,13 @@ public class PartidoRest {
 	private PartidoService partidoService;
 
 	@PostMapping("/registrar")
-	public ResponseEntity<String> registrarPartido(@RequestBody Partido nuevoPartido){
-		partidoService.registrar(nuevoPartido);
-		return new ResponseEntity<>("El partido se ha creado exitosamente", HttpStatus.CREATED);
+	public ResponseEntity<String> registrarPartido(@RequestBody PartidoDto nuevoPartido){
+		if (partidoService.registrar(nuevoPartido)) {
+			return new ResponseEntity<String>("Partido registrado exitosamente.", HttpStatus.CREATED);
+		}
+		else {
+			return new ResponseEntity<String>("El partido no se pudo registrar.", HttpStatus.BAD_REQUEST);
+		}
 	}
 	
 	@GetMapping("/listar")
